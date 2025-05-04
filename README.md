@@ -23,7 +23,7 @@ Another key feature for the application is the cube map skyboxes. The system aut
  2D lines include my name "Xinjie" on the top left, FPS and sin graph (for debugging) on the bottom.</br>
  There is also a FPS counter on the top right of the main viewport.</br>
 
- <img src="./pictures/duck1.png" alt="alt text" width="70%" height="70%"/> 
+ <img src="./pictures/duck1.png" alt="alt text" width="100%" height="100%"/> 
  </br>
   </br>
 
@@ -31,7 +31,7 @@ Another key feature for the application is the cube map skyboxes. The system aut
  
  From the screenshot, you can see the reflections of the skybox scenes appearing on the yellow duck's surface, which is the ambient reflection feature. </br>
 
-<img src="./pictures/duck2.png" alt="alt text" width="70%" height="70%"/> 
+<img src="./pictures/duck2.png" alt="alt text" width="100%" height="100%"/> 
  </br>
   </br>
 
@@ -39,7 +39,7 @@ Another key feature for the application is the cube map skyboxes. The system aut
 
  Here is another scene with a dragon model and a new equirectangular projection HDR image for cubemap skybox.
 
-<img src="./pictures/dragon1.png" alt="alt text" width="70%" height="70%"/> 
+<img src="./pictures/dragon1.png" alt="alt text" width="100%" height="100%"/> 
  </br>
   </br>
 
@@ -47,9 +47,9 @@ Another key feature for the application is the cube map skyboxes. The system aut
 
  Another perspective for dragon example.
 
-  <img src="./pictures/dragon2.png" alt="alt text" width="70%" height="70%"/> 
+  <img src="./pictures/dragon2.png" alt="alt text" width="100%" height="100%"/> 
    </br>
     </br>
-    
+
 ### References
 LightweightVK library is from https://github.com/corporateshark/lightweightvk?tab=License-1-ov-file </br>
