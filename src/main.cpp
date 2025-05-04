@@ -18,9 +18,9 @@ CameraPositioner_MoveTo positionerMoveTo(kInitialCameraPos, kInitialCameraAngles
 vec3 cameraPos = kInitialCameraPos;
 vec3 cameraAngles = kInitialCameraAngles;
 
-vec3 scaleVector = vec3(0.1f, 0.1f, 0.1f);
-//vec3 scaleVector    = vec3(1.0f, 1.0f, 1.0f);
-vec3 rotationVector = vec3(90.0f, 0.0f, 180.0f);
+//vec3 scaleVector = vec3(0.1f, 0.1f, 0.1f);
+vec3 scaleVector    = vec3(1.0f, 1.0f, 1.0f);
+vec3 rotationVector = vec3(-90.0f, 0.0f, 0.0f);
 vec3 rotationVectorLastFrame = vec3(0.0f, 0.0f, 0.0f);
 bool keepRotating   = false;
 
@@ -100,9 +100,9 @@ int main()
     });
 
 	 // load the rubber duck from a gltf file
-   // const aiScene* scene = aiImportFile("data/rubber_duck/scene.gltf", aiProcess_Triangulate);
+    const aiScene* scene = aiImportFile("data/rubber_duck/scene.gltf", aiProcess_Triangulate);
    // const aiScene* scene = aiImportFile("data/aircraft/E 45 Aircraft_obj.obj", aiProcess_Triangulate);
-    const aiScene* scene = aiImportFile("data/dragon/DragonDispersion.gltf", aiProcess_Triangulate);
+   // const aiScene* scene = aiImportFile("data/dragon/DragonDispersion.gltf", aiProcess_Triangulate);
     if (!scene || !scene->HasMeshes()) {
       printf("Unable to load data/rubber_duck/scene.gltf\n");
       exit(255);
@@ -163,15 +163,15 @@ int main()
         nullptr);
 
     // 2D texture for rubber duck model object
-   // lvk::Holder<lvk::TextureHandle> texture = loadTexture(ctx, "data/rubber_duck/textures/Duck_baseColor.png");
-    lvk::Holder<lvk::TextureHandle> texture = loadTexture(ctx, "data/dragon/textures/Dragon_ThicknessMap.jpg");
+    lvk::Holder<lvk::TextureHandle> texture = loadTexture(ctx, "data/rubber_duck/textures/Duck_baseColor.png");
+    //lvk::Holder<lvk::TextureHandle> texture = loadTexture(ctx, "data/dragon/textures/Dragon_ThicknessMap.jpg");
 	 // cube map for skybox
     lvk::Holder<lvk::TextureHandle> cubemapTex;
     {
       int w, h;
-      const float* img = stbi_loadf("data/kloofendal_48d_partly_cloudy_puresky_4k.hdr", &w, &h, nullptr, 4);
+     // const float* img = stbi_loadf("data/kloofendal_48d_partly_cloudy_puresky_4k.hdr", &w, &h, nullptr, 4);
     //  const float* img = stbi_loadf("data/piazza_bologni_1k.hdr", &w, &h, nullptr, 4);
-     //  const float* img = stbi_loadf("data/golden_gate_hills_4k.hdr", &w, &h, nullptr, 4);
+       const float* img = stbi_loadf("data/golden_gate_hills_4k.hdr", &w, &h, nullptr, 4);
       Bitmap in(w, h, 4, eBitmapFormat_Float, img);
       Bitmap out = convertEquirectangularMapToVerticalCross(in);
       stbi_image_free((void*)img);
@@ -200,7 +200,7 @@ int main()
       const mat4 p  = glm::perspective(glm::radians(60.0f), aspectRatio, 0.1f, 1000.0f);
       const mat4 m0 = glm::scale(mat4(1.0f), scaleVector);
       const mat4 r1 = glm::rotate(mat4(1.0f), glm::radians(90.0f), vec3(1, 0, 0));
-      const mat4 r2 = glm::rotate(mat4(1.0f), glm::radians(180.0f), vec3(0, 0, 1));
+     // const mat4 r2 = glm::rotate(mat4(1.0f), glm::radians(180.0f), vec3(0, 0, 1));
       const mat4 m10 = glm::rotate(mat4(1.0f), glm::radians(rotationVector.x), vec3(1, 0, 0)); // pitch X
       const mat4 m11 = glm::rotate(mat4(1.0f), glm::radians(rotationVector.y), vec3(0, 1, 0)); // yaw Y
       const mat4 m12 = glm::rotate(mat4(1.0f), glm::radians(rotationVector.z), vec3(0, 0, 1)); // roll Z
@@ -223,7 +223,7 @@ int main()
 
       const PerFrameData pc = {
     //  .model     = keepRotating ? m2 * r1 * m0 : m11 * m10 * m12 * m0, // rotate in ZXY order (pitch yaw roll)
-        .model     = keepRotating ? m2 * r1 * r2 * m0 : m * m0, 
+        .model     = keepRotating ? m2 * r1 * m0 : m * m0, 
         .view      = app.camera_.getViewMatrix(), // get the view matrix from camera class
         .proj      = p,
         .cameraPos = vec4(app.camera_.getPosition(), 1.0f),
@@ -347,7 +347,7 @@ int main()
            rotationVectorLastFrame.y = rotationVector.y;
            rotationVectorLastFrame.z = rotationVector.z;
            ImGui::SliderFloat3("Rotation", glm::value_ptr(rotationVector), -180.0f, 180.0f);
-           ImGui::SliderFloat3("Scale", glm::value_ptr(scaleVector), 0.05f, +0.15f);
+           ImGui::SliderFloat3("Scale", glm::value_ptr(scaleVector), 0.1f, +2.0f);
            ImGui::Checkbox("Keep rotating", &keepRotating);
 			 }
           ImGui::End();
