@@ -42,6 +42,7 @@ Another key feature for the application is the cube map skyboxes. The system aut
 <img src="./pictures/dragon1.png" alt="alt text" width="70%" height="70%"/> 
  </br>
   </br>
+
  ### Dragon Example 2
 
  Another perspective for dragon example.
@@ -49,5 +50,6 @@ Another key feature for the application is the cube map skyboxes. The system aut
   <img src="./pictures/dragon2.png" alt="alt text" width="70%" height="70%"/> 
    </br>
     </br>
+    
 ### References
 LightweightVK library is from https://github.com/corporateshark/lightweightvk?tab=License-1-ov-file </br>
